@@ -1,0 +1,5 @@
+#!/bin/sh
+# Helper for far-gitk. Must be in the same directory as the
+# far-gitk realpath
+
+ssh "$FAR_GITK_HOST" git -C "$FAR_GITK_DIR" "$@"

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Runs gitk on a remote host over SSH
+# Matt Johnston 2022
+
+d=$(dirname $(realpath "$0"))
+export PATH="$d:$PATH"
+
+IFS=: read FAR_GITK_HOST FAR_GITK_DIR <<EOF
+$1
+EOF
+
+if [ -z "$FAR_GITK_HOST" -o -z "$FAR_GITK_DIR" ]; then
+    echo usage: far-gitk host:directory
+    exit 1
+fi
+shift
+
+export FAR_GITK_HOST
+export FAR_GITK_DIR
+
+exec gitk "$@"
